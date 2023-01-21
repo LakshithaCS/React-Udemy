@@ -1,4 +1,4 @@
-## Simple Calculator Uisng REACT (Without Node.js support)
+## Simple Calculator Using REACT (Without Node.js support)
 
 <br/>
 
