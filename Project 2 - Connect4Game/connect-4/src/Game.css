@@ -15,3 +15,11 @@
   margin: 10px;
   border-radius: 50%;
 }
+
+.odd{
+    background-color: red;
+}
+
+.even{
+    background-color: blue;
+}

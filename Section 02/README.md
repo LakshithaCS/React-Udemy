@@ -97,3 +97,24 @@ marginTop: '-250px';
 ```css
 '1fr 1fr 1fr 1fr' in js => repeat(4, 1fr) in css
 ```
+<br>
+
+### Dynamic Styles
+```javascript
+style={(id%2===0)? {backgroundColor: 'red'} : {backgroundColor: 'blue'}
+```
+<br>
+
+### Dynamic Classes
+```javascript
+className={`gameCircle ${(id % 2 === 0) ? 'even' : 'odd'}`}
+```
+```css
+.odd{
+    background-color: red;
+}
+.even{
+    background-color: blue;
+}
+```
+
