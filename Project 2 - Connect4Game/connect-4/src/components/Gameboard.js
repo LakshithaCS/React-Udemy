@@ -4,37 +4,37 @@ import Gamecircle from "./Gamecircle";
 const Gameboard = () => {
     return (
         <div className="gameBoard">
-            <Gamecircle id={1} color={'red'}>
+            <Gamecircle id={1}>
             </Gamecircle>
-            <Gamecircle id={1} color={'blue'}>
+            <Gamecircle id={2}>
             </Gamecircle>
-            <Gamecircle id={1} color={'red'}>
+            <Gamecircle id={3}>
             </Gamecircle>
-            <Gamecircle id={1} color={'blue'}>
+            <Gamecircle id={4}>
             </Gamecircle>
-            <Gamecircle id={1} color={'red'}>
+            <Gamecircle id={5}>
             </Gamecircle>
-            <Gamecircle id={1} color={'blue'}>
+            <Gamecircle id={6}>
             </Gamecircle>
-            <Gamecircle id={1} color={'red'}>
+            <Gamecircle id={7}>
             </Gamecircle>
-            <Gamecircle id={1} color={'blue'}>
+            <Gamecircle id={8}>
             </Gamecircle>
-            <Gamecircle id={1} color={'red'}>
+            <Gamecircle id={9}>
             </Gamecircle>
-            <Gamecircle id={1} color={'blue'}>
+            <Gamecircle id={10}>
             </Gamecircle>
-            <Gamecircle id={1} color={'red'}>
+            <Gamecircle id={11}>
             </Gamecircle>
-            <Gamecircle id={1} color={'blue'}>
+            <Gamecircle id={12}>
             </Gamecircle>
-            <Gamecircle id={1} color={'red'}>
+            <Gamecircle id={13}>
             </Gamecircle>
-            <Gamecircle id={1} color={'blue'}>
+            <Gamecircle id={14}>
             </Gamecircle>
-            <Gamecircle id={1} color={'red'}>
+            <Gamecircle id={15}>
             </Gamecircle>
-            <Gamecircle id={1} color={'blue'}>
+            <Gamecircle id={16}>
             </Gamecircle>
         </div>
     );
