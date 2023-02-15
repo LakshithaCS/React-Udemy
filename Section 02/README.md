@@ -67,3 +67,26 @@ const Gamecircle = ({id, color, children}) => {
     )
 }
 ```
+<br>
+
+### CSS
+
+*grid*
+*4x4*
+```css
+display: 'grid';
+gridTemplateColumns: '1fr 1fr 1fr 1fr';
+gridTemplateRows: '1fr 1fr 1fr 1fr';
+
+```
+<br>
+
+*centering a div*
+```css
+width: '500px';
+position: 'absolute';
+left:'50%';
+marginLeft: '-250px';
+top: '50%';
+marginTop: '-250px';
+```
