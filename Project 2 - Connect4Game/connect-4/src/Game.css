@@ -14,12 +14,17 @@
   width: 100px;
   margin: 10px;
   border-radius: 50%;
+  border: 5px solid black;
 }
 
-.odd{
+.player_0{
+    background-color: white;
+}
+
+.player_1{
     background-color: red;
 }
 
-.even{
+.player_2{
     background-color: blue;
 }
