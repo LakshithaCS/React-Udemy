@@ -71,6 +71,8 @@ const Gamecircle = ({id, color, children}) => {
 
 ### CSS
 
+* in REACT default unit is pixels, 100 = 100px
+
 *grid*
 *4x4*
 ```css
@@ -89,4 +91,9 @@ left:'50%';
 marginLeft: '-250px';
 top: '50%';
 marginTop: '-250px';
+```
+
+*css repeat()*
+```css
+'1fr 1fr 1fr 1fr' in js => repeat(4, 1fr) in css
 ```

@@ -1,0 +1,17 @@
+.gameBoard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 500px;
+  position: absolute;
+  left: 50%;
+  margin-left: -250px;
+  top: 50%;
+  margin-top: -250px;
+}
+.gameCircle {
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+  border-radius: 50%;
+}
