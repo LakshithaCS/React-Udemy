@@ -1,3 +1,4 @@
+
 .gameBoard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -8,6 +9,11 @@
   margin-left: -250px;
   top: 50%;
   margin-top: -250px;
+  background-color: bisque;
+  border: 8px solid burlywood;
+  border-radius: 8%;
+  padding: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 .gameCircle {
   height: 100px;
@@ -27,4 +33,53 @@
 
 .player_2{
     background-color: blue;
+}
+
+.panel{
+  position: absolute;
+  background-color: lightgoldenrodyellow;
+  border: 8px solid burlywood;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  z-index: 1;
+}
+
+.header{
+  left: 50%;
+  top: 50px;
+  height: 80px;
+  width: 300px;
+  margin-left: -135px;
+}
+
+.header-text{
+  font-size: 30px;
+  font-weight: bold;
+  width: 200px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.footer{
+  left: 50%;
+  top: 670px;
+  height: 50px;
+  width: 300px;
+  margin-left: -135px;
+}
+
+.footer button{
+  position: relative;
+  left: 50%;
+  top: 20%;
+  margin-left: -150px;
+  width: 300px;
+  height: 50px;
+  background-color: lightblue;
+  font-size: 30px;
+
+
 }
