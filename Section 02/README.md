@@ -191,6 +191,7 @@ console.log(remaining); // 2700
 ```
 
 ### ComponentDidUpdate 'render'
+
 ```javascript
     useEffect ((=> {
         // what ever happens when renders
@@ -198,10 +199,71 @@ console.log(remaining); // 2700
 ```
 
 #### ComponentDidLoad is a method that is called once, immediately after the component is rendered in the DOM for the first time. This method is typically used to perform actions that need to happen only once when the component is first initialized, such as initializing state, fetching data, or setting up event listeners.
+
 <br>
 
 #### ComponentDidUpdate, on the other hand, is a method that is called every time the component's state or props are updated and the component is re-rendered. This method is useful for performing actions that need to happen every time the component is updated, such as updating the component's state, fetching new data, or updating the DOM based on the new state or props.
+
 <br>
 
 #### In summary, ComponentDidLoad is called once when the component is initially rendered, while ComponentDidUpdate is called every time the component is updated due to changes in its state or props.
 
+<br>
+<br>
+
+### CSS Variables
+
+```css
+:root {
+  --background-color: blue;
+}
+
+body {
+  background-color: var(--background-color);
+}
+```
+
+<br>
+
+### Conditional Rendering
+
+```javascript
+{
+  gameState === GAME_STATE_PLAYING && (<button onClick={onSuggestClick}>Suggest</button>)
+}
+{
+  gameState !== GAME_STATE_PLAYING && (<button onClick={onNewGameClick}>New Game</button>)
+}
+```
+#### OR
+```javascript
+const renderButton = () => {
+    if (gameState === GAME_STATE_PLAYING) {
+      return <button onClick={onSuggestClick}>Suggest</button>;
+    } else {
+      return <button onClick={onNewGameClick}>New Game</button>;
+    }
+}
+
+{renderButton()}
+```
+<br>
+
+## DEPLOYING
+### 1. Netlify
+
+#### https://app.netlify.com/drop
+#### Build React App
+##### > npm run-script build
+#### Test Built App
+##### > npm install -g serve
+##### > serve -s build (in buid folder)
+#### Drag and Drop build folder to netlify
+<br>
+
+### 2. Surge
+#### surge.sh
+#### Run
+##### > npm install --global surge
+#### Run
+##### > surge (in build folder, enter whatever email and password)
