@@ -238,3 +238,104 @@ const Input = styled.input.attrs({ type: "checkbox" })``;
 <Input defaultChecked />
 
 ```
+<br>
+
+### Dangerously Set Inner HTML
+#### if you have a data like this
+```javascript
+const data = "<b> Hello World </b>";
+```
+#### It wont apply bold style when it is displayed
+#### bold tags will be displayed as a string
+
+### To display it with Bold style
+```javascript
+const data = "<b> Hello World </b>";
+
+const createMarkup = () => {
+    return { __html: data }
+}
+
+<h1 dangerouslySetInnerHTML={createMarkup()} ></h1>
+```
+```html
+Hello World
+```
+
+### OUTLET & LAYOUT (very important to make navbars)
+```javascript
+
+// index.js
+<Route path="/" element={<App />} > {// Other Routes are subroutes inside the Route of App Component}
+      <Route path="/products/:productId" element={<ProductDetail />} />
+      <Route path="/categories/:categoryId" element={<Category />} />
+      <Route path="/basket" element={<Basket />} />
+      <Route path="/checkout" element={<Checkout />} />
+</Route>
+
+// App.js
+const App = () => {
+    return (
+        <Layout/>
+    )
+}
+
+// Layout.js
+import { Outlet } from 'react-router-dom';
+
+const Layout = ({categories}) => {
+    return (
+        <>
+            <header>
+                My store
+            </header>
+
+            <section>
+                <nav>
+                  . . . . . . . . .  {// navigations}
+                </nav>
+                <main>
+                    <Outlet />   {// All webpages will open in this window, other parts wont be changed}
+                </main>
+            </section>
+
+            <footer>
+                Footer
+            </footer>
+        </>
+    )
+}
+
+```
+<br>
+
+### Refactoring
+```javascript
+// index.js
+<React.StrictMode>
+      <App />
+</React.StrictMode>
+
+// App.js
+ <>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout categories={categories}/>} >
+            <Route path="/products/:productId" element={<ProductDetail />} />
+            <Route path="/categories/:categoryId" element={<Category />} />
+            <Route path="/basket" element={<Basket />} />
+            <Route path="/checkout" element={<Checkout />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </>
+```
+<br>
+
+### Home Component Route
+```javascript
+<Route index element={<Home />} />
+```
+<br>
+
+## Context in React
