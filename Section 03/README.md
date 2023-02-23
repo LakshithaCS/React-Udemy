@@ -141,8 +141,100 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
+      <Route path="/products/:productId" element={<ProductDetail />} /> {/*URL parameters*/}
     </Routes>
   </BrowserRouter>
 </React.StrictMode>;
 ```
+
 <br>
+
+### Navigation
+
+### 1. Link
+
+```javascript
+import { Link } from "react-router-dom";
+
+<Link to={`/products/${id}`}>{title}</Link>;
+```
+
+<br>
+
+#### 2. useNavigate hook
+
+```javascript
+import { useNavigate } from "react-router-dom";
+
+const navigate = useNavigate();
+
+<button 
+  onClick={() => navigate(`/product/${id}`)}
+  >
+  View Product
+</button>;
+```
+<br>
+
+### Reading URL parameters
+#### useParams hook
+```javascript
+import { useParams } from "react-router-dom";
+
+const params = useParams();
+
+<div>ProductDetail id: {params.productId}</div> {// has to match exactly with param name of route}
+
+// OR
+const {productId} = useParams();
+
+<div>ProductDetail id: {productId}</div>
+```
+
+### Styled Components
+#### styled-components.com/docs
+#### npm install --save styled-components
+```javascript
+import styled from 'styled-components';
+
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
+
+<Title>
+      Hello World!
+</Title>
+
+
+/* Adapt the colors based on primary prop */
+const Button = styled.button`
+  background: ${props => props.primary ? "palevioletred" : "white"};
+`
+
+/*Extending*/
+const Button = styled.button`
+  color: palevioletred;
+`;
+
+const TomatoButton = styled(Button)`
+  color: tomato;
+  border-color: tomato;
+`;
+
+/*Hover*/
+const Thing = styled.div`
+  color: blue;
+
+  &:hover {
+    color: red; // <Thing> when hovered
+  }
+`
+
+/*Attributes*/
+const Input = styled.input.attrs({ type: "checkbox" })``;
+<Input defaultChecked />
+
+```

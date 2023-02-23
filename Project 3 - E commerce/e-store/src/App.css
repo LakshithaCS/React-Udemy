@@ -13,6 +13,13 @@ a {
     text-decoration: none;
 }
 
+article{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.25fr 1fr 0.25fr;
+    column-gap: 20px;
+}
+
 /* Style the header */
 header {
     background-color: #666;

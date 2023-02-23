@@ -19,6 +19,10 @@ export const getProducts = (id) => {
     return fetcher('products?catId=' + id);
 }
 
+export const getProductsById = (id) => {
+    return fetcher('products/' + id);
+}
+
 export const getCategories = () => {
     return fetcher("categories");
 }
