@@ -26,3 +26,7 @@ export const getProductsById = (id) => {
 export const getCategories = () => {
     return fetcher("categories");
 }
+
+export const getProductsByQuery = (query) => {
+    return fetcher("products/?q=" + query);
+}

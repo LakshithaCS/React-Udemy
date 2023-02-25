@@ -28,7 +28,7 @@ header {
     font-size: 35px;
     color: white;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 0.11fr 0.2fr 1fr 0.1fr;
 }
 
 header a {

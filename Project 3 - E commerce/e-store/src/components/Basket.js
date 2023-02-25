@@ -1,17 +1,24 @@
 import React from 'react';
 import styled from "styled-components";
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../context/CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { UpIcon, DownIcon, TrashIcon } from './icons';
 
 const Basket = () => {
-
+  const [cartItems, setCartItems] = useState([]);
   const { getItems, clear, increseQty, decreseQty, removeProduct } = useContext(CartContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setCartItems(getItems());
+  }, [])
+
+  useEffect(() => {
+    console.log(cartItems);
+  }, [cartItems])
+
   const renderTotal = () => {
-    const cartItems = getItems();
     const total = cartItems.reduce((acc, item) => {
       return acc + item.price * item.quantity
     }, 0);
@@ -19,8 +26,6 @@ const Basket = () => {
   }
 
   const renderCart = () => {
-    const cartItems = getItems();
-
     if (cartItems.length === 0) {
       return <div>The Baskey Is Empty</div>
     } else {
@@ -32,9 +37,9 @@ const Basket = () => {
             </div>
             <BasketQty>
               {item.quantity}
-              <UpIcon width={20} onClick={() => increseQty(item)} />
-              <DownIcon width={20} onClick={() => decreseQty(item)} />
-              <TrashIcon width={20} onClick={() => removeProduct(item)} />
+              <UpIcon width={20} onClick={() => setCartItems(increseQty(item))} />
+              <DownIcon width={20} onClick={() => setCartItems(decreseQty(item))} />
+              <TrashIcon width={20} onClick={() => setCartItems(removeProduct(item))} />
             </BasketQty>
             <BasketPrice>
               {item.price}
@@ -48,7 +53,7 @@ const Basket = () => {
   return (
     <BasketContainer>
       <BasketTitle>Shopping Basket</BasketTitle>
-      <BasketButton>Checkout</BasketButton>
+      <BasketButton onClick={() => navigate('/checkout')}>Checkout</BasketButton>
 
       <BasketTable>
         <BasketHeader>
@@ -63,7 +68,7 @@ const Basket = () => {
         <BasketHeaderLine />
       </BasketTable>
 
-      <BasketButton onClick={clear}>Clear</BasketButton>
+      <BasketButton onClick={() => setCartItems(clear())}>Clear</BasketButton>
       <BasketTotal>Total: {renderTotal()} </BasketTotal>
     </BasketContainer>
   )

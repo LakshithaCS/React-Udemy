@@ -467,4 +467,103 @@ const CartContextProvider = ({ children }) => {
 
 export default CartContextProvider;
 ```
+<br>
+
+### Local/Session Storage
+#### An API supported by every modern browser
+#### Stores data in user's computer locally
+#### It is <b>modern replcement to the old cookie system</b> (more secure than cookies)
+#### Two types of stoage: 1. local  2. session
+#### 1. local - keeps data until user clean up the local storage
+#### 2. session - only until for a session
+<br>
+
+### Local Storage
+### * set -> localStorage.setitem(key, value)
+### * get -> localStorage.getitem(key)
+### * remove -> localStorage.removeitem(key)
+### * clear -> localStorage.clear()
+<br>
+
+### Session Storage - <br> session are different for browser tabs. Also they will be cleared if you close the browser</b>
+### * set -> sessionStorage.setitem(key, value)
+### * get -> sessionStorage.getitem(key)
+### * remove -> sessionStorage.removeitem(key)
+### * clear -> sessionStorage.clear()
+<br>
+
+```javascript
+
+const Storage = (cartItems) => {
+  localStorage.setItem('cart', JSON.stringify(cartItems.length > 0 ? cartItems : []));
+}
+Storage(cart);
+
+const Storage = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+const initialState = { cartItems: Storage }
+```
+<br>
+
+## useSearchParams hook
+### Search Box
+```javascript
+<input type='text' name='search' onChange={handleChange} />
+
+const handleChange = (evt) => {
+  navigate('/search/?s=' + evt.target.value)
+}
+```
+### Set Route for search
+```javascript
+<Route path="/search" element={<SearchResult />} />
+```
+### SearchResults Component
+```javascript
+
+import { useSearchParams } from 'react-router-dom';
+
+const [searchParams] = useSearchParams();
+const query = searchParams.get('s'); // beacuse url : localhost:3000/serach/?s=.....
+
+React.useEffect(() => {
+    const fetchProducts = async () => {
+      const res = await getProductsByQuery(query);
+      setProducts(res);
+    }
+    fetchProducts();
+}, [query]);
+
+export const getProductsByQuery = (query) => {
+    return fetcher("products/?q=" + query); // q for query, it returns anything contains the given query string
+}
+```
+
+### There is a problem handleChange method sends HTTP request for every change in the search bar
+### That is not good. Requests should be set once user stops the entering something
+### To do that we should use 'Debouncing'
+<br>
+
+## Debouncing
+```javascript
+const navigate = useNavigate();
+const [searchTerm, setSearchTerm] = React.useState('');
+
+const handleChange = (evt) => {
+  setSearchTerm(evt.target.value);
+}
+
+React.useEffect(() => {
+        
+    const delay = setTimeout(() => {
+      navigate('/search/?s=' + searchTerm)
+    }, 500);
+
+    // when the component is unMounted(ex: browser tab is closed), timeout wont be run in background
+    return ()=> clearTimeout(delay); 
+
+}, [searchTerm])
+```
+
+
+
 

@@ -6,8 +6,10 @@ import { useReducer } from "react";
 // global context
 export const CartContext = createContext();
 
+const Storage = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+
 // initial values
-const initialState = { cartItems: [] }
+const initialState = { cartItems: Storage }
 
 // provider function
 const CartContextProvider = ({ children }) => {
@@ -21,18 +23,22 @@ const CartContextProvider = ({ children }) => {
 
     const removeProduct = payload => {
         dispatch({ type: "REMOVE", payload });
+        return state.cartItems;
     }
 
     const increseQty = payload => {
         dispatch({ type: "INCQTY", payload });
+        return state.cartItems;
     }
 
     const decreseQty = payload => {
         dispatch({ type: "DECQTY", payload });
+        return state.cartItems;
     }
 
-    const clear = payload => {
+    const clear = () => {
         dispatch({ type: "CLEAR", undefined });
+        return [];
     }
 
     const getItems = () => {
