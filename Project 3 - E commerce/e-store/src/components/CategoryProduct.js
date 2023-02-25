@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { CartContext } from '../context/CartContext';
+import { useContext } from 'react';
 
 
 const CategoryProduct = ({
@@ -13,7 +15,15 @@ const CategoryProduct = ({
     stock,
 }) => {
 
+    const cartContext = useContext(CartContext);
+    const { addProduct } = cartContext; // extract add product method
+    const [d, setD] = React.useState(false);
+
     const navigate = useNavigate();
+
+    const handleAddButton = () => {
+        addProduct({ id, title, price });
+    }
 
     return (
         <ProductInfoArticle>
@@ -64,7 +74,7 @@ const CategoryProduct = ({
                     <ProductInfoActionButton onClick={() => navigate(`/products/${id}`)}>
                         View Product
                     </ProductInfoActionButton>
-                    <ProductInfoActionButton>Add to Basket</ProductInfoActionButton>
+                    <ProductInfoActionButton onClick={handleAddButton} disabled={d}>Add to Basket</ProductInfoActionButton>
                 </ProductInfoAction>
             </aside>
         </ProductInfoArticle>

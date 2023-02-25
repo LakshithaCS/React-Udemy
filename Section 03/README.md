@@ -339,3 +339,132 @@ const Layout = ({categories}) => {
 <br>
 
 ## Context in React
+### React context is an essential tool for every React developer to know. <b> It lets you easily share state in your applications (among components).</b>
+
+### Context Provider
+```javascript
+// src/context/CartContext.js
+
+import React from "react";
+import { createContext } from "react";
+
+// global context
+export const CartContext = createContext();
+
+// initial values
+const initialState = { cartItems: [] }
+
+// provider function
+const CartContextProvider = ({children}) => {
+
+    // add product callback function
+    const addProduct = payload => {
+        console.log(payload);
+    }
+
+    // this json has 'addProduct' function and 'initalState'
+    const contextValue = { addProduct, ...initialState }
+
+    return (
+        <CartContext.Provider value={contextValue}> {/* this make 'addProduct' and 'initalState' available to React components */}
+            {children}
+        </CartContext.Provider>
+    )
+}
+
+export default CartContextProvider;
+```
+
+### Add context provider at top of the tree
+```javascript
+// index.js
+<React.StrictMode>
+    <CartContextProvider>
+      <App />
+    </CartContextProvider>
+</React.StrictMode>
+```
+<br>
+
+### useContext hook
+#### useContext is a React Hook that lets you read and subscribe to context from your component.
+```javascript
+import { CartContext } from '../context/CartContext';
+import { useContext } from 'react';
+
+const cartContext = useContext(CartContext); // subscribe
+const { addProduct } = cartContext; // extract add product method
+
+<Button onClick={ () => addProduct({ id, title, price })}>
+  Add to Basket
+</Button>
+```
+<br>
+
+### useReducer
+#### reducer - The reducer function that specifies how the state gets updated. It must be pure, should take the state and action as arguments, and should return the next state. State and action can be of any types. (It is like a finite state machine)
+```javascript
+// CartReducer.js
+// state = current state
+// this function returns next state of the corresponding action
+export const cartReducer = (state, action) => {
+    switch (action.type) {
+        case "ADD":
+            const index = state.cartItems.findIndex(item => item.id === action.payload.id);
+            if (index === -1) { // no product found, make quantity == 1
+                state.cartItems.push({ ...action.payload, quantity: 1 });
+            } else { // already have the same product, increase the quantity
+                state.cartItems[index].quantity++;
+            }
+            return state; // return modified state
+
+        case "REMOVE":
+            // do something
+            return state;
+
+        default:
+            return state; // state current state
+    }
+}
+```
+#### useReducer is a React Hook that lets you add a reducer to your component.
+#### const [state, dispatch] = useReducer(reducer, initialArg, init?)
+#### third parameteris optional. it it is given - initial state will be calculated by init(initialArg)
+#### Returns the current state and,
+#### The dispatch function that lets you update the state to a different value and trigger a re-render.
+```javascript
+// CartContext.js
+import React from "react";
+import { createContext } from "react";
+import { cartReducer } from "../components/CartReducer";
+import { useReducer } from "react";
+
+// global context
+export const CartContext = createContext();
+
+// initial values
+const initialState = { cartItems: [] }
+
+// provider function
+const CartContextProvider = ({ children }) => {
+
+    const [state, dispatch] = useReducer(cartReducer, initialState);
+
+    // add product callback function
+    const addProduct = payload => {
+        dispatch({ type: "ADD", payload })
+    }
+
+    // this json has 'addProduct' function and 'state'
+    const contextValue = { addProduct, ...state }
+
+    return (
+        <CartContext.Provider value={contextValue}> {/* this make 'addProduct' and 'state' available to React components */}
+            {children}
+        </CartContext.Provider>
+    )
+}
+
+export default CartContextProvider;
+```
+

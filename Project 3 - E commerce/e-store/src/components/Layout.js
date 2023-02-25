@@ -1,5 +1,6 @@
 import React from 'react'
 import { Outlet, Link } from 'react-router-dom';
+import { HomeIcon, CartIcon } from './icons';
 
 const Layout = ({ categories }) => {
 
@@ -12,7 +13,16 @@ const Layout = ({ categories }) => {
     return (
         <>
             <header>
-                My store
+
+                <div id="headerHomeIcon">
+                    <Link to='/'><HomeIcon width={20} /></Link>
+                </div>
+                <div id="headerTitle">
+                    My store
+                </div>
+                <div id="headerCartIcon">
+                    <Link to='/basket' ><CartIcon width={20} /></Link>
+                </div>
             </header>
 
             <section>
