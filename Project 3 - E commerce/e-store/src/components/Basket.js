@@ -14,10 +14,6 @@ const Basket = () => {
     setCartItems(getItems());
   }, [])
 
-  useEffect(() => {
-    console.log(cartItems);
-  }, [cartItems])
-
   const renderTotal = () => {
     const total = cartItems.reduce((acc, item) => {
       return acc + item.price * item.quantity

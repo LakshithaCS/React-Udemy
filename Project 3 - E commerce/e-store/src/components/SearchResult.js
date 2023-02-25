@@ -20,11 +20,15 @@ const SearchResult = () => {
 
 
     const renderProducts = () => {
-        return products.data.map((p) => (
-            <CategoryProduct key={p.id} {...p}>
-                {p.title}
-            </CategoryProduct>
-        ));
+        if (products.data.length > 0) {
+            return products.data.map((p) => (
+                <CategoryProduct key={p.id} {...p}>
+                    {p.title}
+                </CategoryProduct>
+            ));
+        } else {
+            return <div>No Result Found</div>
+        }
     };
 
     return (
